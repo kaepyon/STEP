@@ -4,7 +4,7 @@
 int main(){
 //辞書を並び替えたdict.textを作る
 	FILE *fp;
-	char *filename = "/usr/share/dict/words";
+	char *filename = "words.txt";
 	//char *output;
 	int N = 2000000;
 	char readline[N][256];
