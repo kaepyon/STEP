@@ -1,14 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define N 300000
+
 int main(){
-//辞書を並び替えたdict.textを作る
+  //ポインタ配列に格納
 	FILE *fp;
 	char *filename = "/usr/share/dict/words";
 
-	int N = 300000;
-	char *line;
-	line = (char*)malloc(256*N);
+	char *line[N];
+	int i;
+
+	for(i=0;i<N;i++){
+	  line[i] = (char*)malloc(sizeof(char)*256);
+	}
 
 	fp = fopen(filename,"r");
 	if(fp==NULL){
@@ -16,10 +21,19 @@ int main(){
 		exit(EXIT_FAILURE);
 	}
 
-	fgets(line,256,fp);
-	printf("%s\n",line);
+	for(i=0;i<N;i++){
+	  if(fgets(line[i],256,fp)!=NULL){
+	    printf("%s",line[i]);
+	  }
+	  else break;
+	}
 
 	fclose(fp);
-	free(line);
+
+	//
+
+	for(i=0;i<N;i++){
+	  free(line[i]);
+	}
 	return 0;
 }
