@@ -13,28 +13,27 @@ double distance(double x1,double y1,double x2,double y2){
 }
 
 double solve(int m,int n){
-    sum = sum + distance(deta[m][0],deta[n][0],deta[m][1],deta[n][1]);
+    sum = sum + distance(deta[m-1][0],deta[m-1][1],deta[n-1][0],deta[n-1][1]);
     return sum;
 }
 
 void list(){
     int i;
+
     solve(5,tbl[0]);
     solve(tbl[0],tbl[1]);
     solve(tbl[1],tbl[2]);
     solve(tbl[2],tbl[3]);
     solve(tbl[3],5);
 
-    printf("%lf\n",sum); 
-
     if(min>sum){
         min = sum;}
 
     sum=0;
-
     return;
 }
 
+//順列
 void per(int t[],int n){
     int i,k,w;
     if(n<2){
@@ -68,7 +67,8 @@ int main(){
         printf("%sのオープンに失敗しました。\n",file);
         return -1;
     }
-    
+ 
+    //x,yの座標を格納   
     while(fgets(buf,100,fp)!=NULL){
         ary[0] = strtok(buf,",");
         ary[1] = strtok(NULL,",");
@@ -78,8 +78,6 @@ int main(){
         }
         j++;
     }
-    
-
     
     for(i=0;i<4;i++){
         tbl[i]=i+1;
