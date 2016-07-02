@@ -29,6 +29,7 @@ void list(){
         min = sum;}
 
     sum=0;
+
     return;
 }
 
