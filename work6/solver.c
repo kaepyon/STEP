@@ -19,7 +19,6 @@ double solve(int m,int n){
 
 void list(){
     int i;
-
     solve(5,tbl[0]);
     solve(tbl[0],tbl[1]);
     solve(tbl[1],tbl[2]);
