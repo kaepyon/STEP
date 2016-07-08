@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <math.h>
 
+#define N 16
+
 double sum=0;
 double min=1000000;
-double deta[5][2];
-int tbl[4];
+double deta[N][2];
+int tbl[N-1];
 
 double distance(double x1,double y1,double x2,double y2){
     return sqrt(pow(x1-x2,2)+pow(y1-y2,2));
@@ -19,11 +21,12 @@ double solve(int m,int n){
 
 void list(){
     int i;
-    solve(5,tbl[0]);
-    solve(tbl[0],tbl[1]);
-    solve(tbl[1],tbl[2]);
-    solve(tbl[2],tbl[3]);
-    solve(tbl[3],5);
+    solve(N,tbl[0]);
+
+    for(i=0;i<N-2;i++){
+      solve(tbl[i],tbl[i+1]);
+    }
+    solve(tbl[N-2],N);
 
     if(min>sum){
         min = sum;}
@@ -55,7 +58,7 @@ void per(int t[],int n){
 
 int main(){
     FILE *fp;
-    char *file = "input_0.csv";
+    char *file = "input_2.csv";
     
     char buf[100];
     char *ary[2];
@@ -79,11 +82,11 @@ int main(){
         j++;
     }
     
-    for(i=0;i<4;i++){
+    for(i=0;i<N-1;i++){
         tbl[i]=i+1;
     }
     
-    per(tbl,4);   
+    per(tbl,N-1);   
     
     printf("%lf\n",min);
     return 0;
